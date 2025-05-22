@@ -14,6 +14,7 @@ git clone https://github.com/PaulaRuizB/Embedded-Gait
 If you find this code useful in your research, please consider citing:
 
 * Original paper: [High performance inference of gait recognition models on embedded systems](https://www.sciencedirect.com/science/article/pii/S2210537922001457)
+  
     @article{ruiz2022high,
     title={High performance inference of gait recognition models on embedded systems},
     author={Ruiz-Barroso, Paula and Castro, Francisco M and Delgado-Esca{\~n}o, Rub{\'e}n and Ramos-C{\'o}zar, Juli{\'a}n and Guil, Nicol{\'a}s},
@@ -23,5 +24,6 @@ If you find this code useful in your research, please consider citing:
     year={2022},
     publisher={Elsevier}
     }
+  
 * The paper describing this project has been accepted and will be available soon.
 

@@ -29,12 +29,12 @@ If you find this code useful in your research, please consider citing:
   
 * The paper describing this project has been accepted and will be available soon.
 
-# Deployment on Triton
+# Inference 
+The script *performance_sweeping.sh* runs several configurations and extracts  
 
+Similarly, the file "
 ## Inference Server
 It runs inferences. It must be running on the Jetson platform. The best way to run the server is using docker images. In our experiments,  we have employed the image named  nvcr.io/nvidia/tritonserver:24.01-py3-igpu that can be downloaded from <https://catalog.ngc.nvidia.com/orgs/nvidia/containers/tritonserver/tags>.
-
-Deployment command: 
 
 docker run --runtime nvidia --rm --net=host -v /[*pathtomodelrepository]*/model\_repository/:/models nvcr.io/nvidia/tritonserver:24.01-py3-igpu tritonserver --model-repository=/models
 
@@ -55,7 +55,9 @@ model\_repository
 
 `    `model.plan
 
-## Performance Analyzer
+In the file *model_repository.tgz* you have an example of model repository including two models, 3D_best_0_batchd and 2D_int8_40_batchd in TensorRT (model.plan)
+
+## Performance analyzer
 
 It automatically executes several inferences and extracts performance metrics. Performance analyzer is in another docker image with the “sdk” tag. We have used nvcr.io/nvidia/tritonserver:24.01-py3-igpu-sdk. In order to run the container, the following command is executed in the Jetson platform:
 
@@ -65,6 +67,9 @@ Before running this container, the Server container must be already running as t
 
 Several commands can be used to run inferences on the Performance Analyze container. Please have a look at the NVIDIA Triton performance Analyzer manual.
 
+The script *performance_sweeping.sh*, using performace analyzer, executes several configurations and calculates the performance. 
 
+## Energy consumption
 
+The files *3DGait_client_ver2.py* and *energy_merter.py* allow running different configurations with concurrency and batching values, and calculating the energy consumption per inference. The script energy_sweeping do that for different values of concurrency and batching. 
 

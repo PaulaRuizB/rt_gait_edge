@@ -71,5 +71,5 @@ The script *performance_sweeping.sh*, using performace analyzer, executes severa
 
 ## Energy consumption
 
-The files *3DGait_client_ver2.py* and *energy_merter.py* allow running different configurations with concurrency and batching values, and calculating the energy consumption per inference. The script energy_sweeping do that for different values of concurrency and batching. 
+The files *3DGait_client_ver2.py* and *energy_merter.py* allow running different configurations with concurrency and batching values, and calculating the energy consumption per inference. The script *energy_sweeping.sh* shows how to do it. 
 

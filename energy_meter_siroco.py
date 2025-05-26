@@ -14,60 +14,37 @@ class EnergyMeter(threading.Thread):
 		self.steps = 0
 		self.sensors = dict()
 		self.descartes = descartes
-		if self.device == 'nano':
-			# Whole board
-			self.sensors['POM_5V_IN'] = open('/sys/bus/i2c/drivers/ina3221x/6-0040/iio:device0/in_current0_input', 'r')
+		if self.device == 'orin':
 			# GPU
-			self.sensors['POM_5V_GPU'] = open('/sys/bus/i2c/drivers/ina3221x/6-0040/iio:device0/in_current1_input', 'r')
+			self.sensors['GPU'] = open('/sys/bus/i2c/drivers/ina3221/1-0040/hwmon/hwmon1/curr1_input', 'r')
+			self.sensors['VGPU'] = open('/sys/bus/i2c/drivers/ina3221/1-0040/hwmon/hwmon1/in1_input', 'r')
 			# CPU
-			self.sensors['POM_5V_CPU'] = open('/sys/bus/i2c/drivers/ina3221x/6-0040/iio:device0/in_current2_input', 'r')
-
-			if self.mode == 'GPU':
-				self.mode = 'POM_5V_GPU'
-			else:
-				self.mode = 'POM_5V_CPU'
-		elif self.device == 'xavier':
-			# GPU
-			self.sensors['GPU'] = open('/sys/bus/i2c/drivers/ina3221/1-0040/hwmon/hwmon3/curr1_input', 'r')
-			# CPU
-			self.sensors['CPU'] = open('/sys/bus/i2c/drivers/ina3221/1-0040/hwmon/hwmon3/curr2_input', 'r')
+			self.sensors['CPU'] = open('/sys/bus/i2c/drivers/ina3221/1-0040/hwmon/hwmon1/curr2_input', 'r')
 			# SoC - GPU - CPU (rest of SoC components)
-			self.sensors['SOC'] = open('/sys/bus/i2c/drivers/ina3221/1-0040/hwmon/hwmon3/curr3_input', 'r')
-			# Computer Vision modules + Deep Learning Accelerators
-			self.sensors['CV'] = open('/sys/bus/i2c/drivers/ina3221/1-0041/hwmon/hwmon4/curr1_input', 'r')
-			# Memory
-			self.sensors['VDDRQ'] = open('/sys/bus/i2c/drivers/ina3221/1-0041/hwmon/hwmon4/curr2_input', 'r')
-			# Other components of the board (eMMC, video, audio, etc)
-			self.sensors['SYS5V'] = open('/sys/bus/i2c/drivers/ina3221/1-0041/hwmon/hwmon4/curr3_input', 'r')
-
-		elif self.device == 'orin':
-			# GPU
-			self.sensors['GPU'] = open('/sys/bus/i2c/drivers/ina3221/1-0040/hwmon/hwmon0/curr1_input', 'r')
-			# CPU
-			self.sensors['CPU'] = open('/sys/bus/i2c/drivers/ina3221/1-0040/hwmon/hwmon0/curr2_input', 'r')
-			# SoC - GPU - CPU (rest of SoC components)
-			self.sensors['SOC'] = open('/sys/bus/i2c/drivers/ina3221/1-0040/hwmon/hwmon0/curr3_input', 'r')
+			self.sensors['SOC'] = open('/sys/bus/i2c/drivers/ina3221/1-0040/hwmon/hwmon1/curr3_input', 'r')
 			# Computer Vision modules + Deep Learning Accelerators
 			self.sensors['CV'] = open('/sys/bus/i2c/drivers/ina3221/1-0041/hwmon/hwmon1/curr1_input', 'r')
 			# Memory
 			self.sensors['VDDRQ'] = open('/sys/bus/i2c/drivers/ina3221/1-0041/hwmon/hwmon1/curr2_input', 'r')
 			# Other components of the board (eMMC, video, audio, etc)
-			self.sensors['SYS5V'] = open('/sys/bus/i2c/drivers/ina3221/1-0041/hwmon/hwmon1/curr3_input', 'r')
-   
+			self.sensors['SYS5V'] = open('/sys/bus/i2c/drivers/ina3221/1-0041/hwmon/hwmon1/curr3_input', 'r')   
 		elif self.device == 'orin2':
 			# GPU
 			self.sensors['GPU'] = open('/sys/bus/i2c/drivers/ina3221/1-0040/hwmon/hwmon1/curr1_input', 'r')
+			self.sensors['VGPU'] = open('/sys/bus/i2c/drivers/ina3221/1-0040/hwmon/hwmon1/in1_input', 'r')
     		# CPU
-			self.sensors['CPU'] = open('/sys/bus/i2c/drivers/ina3221/1-0040/hwmon/hwmon1/curr2_input', 'r')
 			self.sensors['CPU'] = open('/sys/bus/i2c/drivers/ina3221/1-0040/hwmon/hwmon1/curr2_input', 'r')
 			# SoC - GPU - CPU (rest of SoC components)
 			self.sensors['SOC'] = open('/sys/bus/i2c/drivers/ina3221/1-0040/hwmon/hwmon1/curr3_input', 'r')
 			# Computer Vision modules + Deep Learning Accelerators
-			self.sensors['CV'] = open('/sys/bus/i2c/drivers/ina3221/1-0041/hwmon/hwmon2/curr1_input', 'r')
+			self.sensors['CV'] = open('/sys/bus/i2c/drivers/ina3221/1-0040/hwmon/hwmon1/curr1_input', 'r')
             # Memory
-			self.sensors['VDDRQ'] = open('/sys/bus/i2c/drivers/ina3221/1-0041/hwmon/hwmon2/curr2_input', 'r')
+			self.sensors['VDDRQ'] = open('/sys/bus/i2c/drivers/ina3221/1-0040/hwmon/hwmon1/curr2_input', 'r')
             # Other components of the board (eMMC, video, audio, etc)
-			self.sensors['SYS5V'] = open('/sys/bus/i2c/drivers/ina3221/1-0041/hwmon/hwmon2/curr3_input', 'r')
+			self.sensors['SYS5V'] = open('/sys/bus/i2c/drivers/ina3221/1-0040/hwmon/hwmon1/curr3_input', 'r')
+		else:
+			print("Device not supported\n")
+			return
 
 		# Launch threads.
 		self.measuring = False
@@ -77,10 +54,12 @@ class EnergyMeter(threading.Thread):
 	def run(self):
 		while self.executing:
 			while self.measuring:
-				t = time.time_ns()
-				energy = int(self.sensors[self.mode].read().strip())
-				self.total_energy = self.total_energy + (0.002 * energy)
+				t = time.time_ns()			
+				mA = float(self.sensors[self.mode].read().strip())
+				mV = float(self.sensors['VGPU'].read().strip())
+				self.total_energy = self.total_energy + (self.sleep_time * mA * mV/1000.0)
 				self.sensors[self.mode].seek(0)
+				self.sensors['VGPU'].seek(0)
 
 				time.sleep(max(self.sleep_time - ((time.time_ns() - t) / 1e9), 0))
 

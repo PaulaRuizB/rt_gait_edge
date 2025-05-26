@@ -624,7 +624,7 @@ if __name__ == "__main__":
     metrics = get_metrics()
     end_values = get_metrics_values(metrics, FLAGS.model_name)
     number_of_inferences = int(end_values[2])-int(init_values[2])
-    print("", int(FLAGS.batch_size), int(FLAGS.conc), acc_energy/number_of_inferences)
+    print("", "Batch=",int(FLAGS.batch_size), "Conc=", int(FLAGS.conc), "Inferences=", number_of_inferences, "Energy_per_inference(mJ)=", acc_energy/number_of_inferences)
 
 """
     print("Number of succesul requested inferences: ", int(end_values[0])-int(init_values[0]))

@@ -31,7 +31,7 @@ If you find this code useful in your research, please consider citing:
 
 # Inference 
 
-The inference is performed using NVidia Triton as inferences server. Similarly, we use NVidia Performace Analyzer as inference client to measure inference performance. Both applications are executed using Docker containers. In addition, we have developed a inference client that calculates energy consumption per inference. Following, more details are given.
+The inference is performed using NVidia Triton as inference server. Similarly, we use NVidia Performace Analyzer as inference client to measure inference performance. Both applications are executed using Docker containers. In addition, we have developed a inference client that calculates energy consumption per inference. Following, more details are given.
 
 ## Inference Server
 It runs inferences. It must be running on the Jetson platform. The best way to run the server is using docker images. In our experiments,  we have employed the image named  nvcr.io/nvidia/tritonserver:24.01-py3-igpu that can be downloaded from <https://catalog.ngc.nvidia.com/orgs/nvidia/containers/tritonserver/tags>.

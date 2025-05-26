@@ -34,7 +34,7 @@ If you find this code useful in your research, please consider citing:
 The inference is performed using NVidia Triton as inference server. Similarly, we use NVidia Performace Analyzer as inference client to measure inference performance. Both applications are executed using Docker containers. In addition, we have developed a inference client that calculates energy consumption per inference. Following, more details are given.
 
 ## Inference Server
-It runs inferences. It must be running on the Jetson platform. The best way to run the server is using docker images. In our experiments,  we have employed the image named  nvcr.io/nvidia/tritonserver:24.01-py3-igpu that can be downloaded from <https://catalog.ngc.nvidia.com/orgs/nvidia/containers/tritonserver/tags>.
+It runs inferences. It must be running on the Jetson platform. The best way to run the server is using docker images. In our experiments,  we have employed the image named  nvcr.io/nvidia/tritonserver:24.01-py3-igpu that can be downloaded from <https://catalog.ngc.nvidia.com/orgs/nvidia/containers/tritonserver/tags>. The comamnd to run the docker container is:
 
 docker run --runtime nvidia --rm --net=host -v /[*pathtomodelrepository]*/model\_repository/:/models nvcr.io/nvidia/tritonserver:24.01-py3-igpu tritonserver --model-repository=/models
 
@@ -52,7 +52,7 @@ model\_repository
 
 `     `model.plan
 
-In the file *model_repository.tgz* you have an example of model repository including two gait recognition models, 3D_best_0_batchd (3D convolutions, best quantization, no pruning and dynamic batch) and 2D_int8_40_batchd (2D convolutions, int8 quantization, 40% pruned and dynamic batch) a in TensorRT (model.plan)
+In the file *model_repository.tgz* you have an example of model repository including two gait recognition models, 3D_best_0_batchd (3D convolutions, best quantization, no pruning and dynamic batch) and 2D_int8_40_batchd (2D convolutions, int8 quantization, 40% pruned and dynamic batch) in TensorRT (model.plan)
 
 ## Performance analyzer
 

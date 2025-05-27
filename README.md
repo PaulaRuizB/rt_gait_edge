@@ -16,12 +16,12 @@ The inference is performed using NVIDIA Triton as inference server. Similarly, w
 It runs inferences. It must be running on the Jetson platform. The best way to run the server is using docker images. In our experiments, we have employed the image named `nvcr.io/nvidia/tritonserver:24.01-py3-igpu` that can be downloaded from <https://catalog.ngc.nvidia.com/orgs/nvidia/containers/tritonserver/tags>. The comamnd to run the docker container is:
 
 ```
-docker run --runtime nvidia --rm --net=host -v /[*pathtomodelrepository]*/model\_repository/:/models nvcr.io/nvidia/tritonserver:24.01-py3-igpu tritonserver --model-repository=/models
+docker run --runtime nvidia --rm --net=host -v /[*pathtomodelrepository]*/model_repository/:/models nvcr.io/nvidia/tritonserver:24.01-py3-igpu tritonserver --model-repository=/models
 ```
 
 _Comment: when the container starts, it executes the `/opt/nvidia\_entrypoint.sh` file. This script performs several checks. Among them, it checks if the driver is installed by executing `nvidia-smi` command. As this command is not present in Jetson, the container shows the message  “Failed to detect NVIDIA driver version.”. This message can be dismissed as the driver is working._
 
-Models employed for inferences must be storage in the host directory `/[*pathtomodelrepository]*/model\_repository/`
+Models employed for inferences must be storage in the host directory `/[*pathtomodelrepository]*/model_repository/`
 
 In the model\_repository directory, a specific hierarchy must be used for each model. Following, an example of the hierarchy for the 2Dbase model is shown:
 

@@ -44,7 +44,7 @@ sudo docker run --runtime nvidia -it --rm --net=host nvcr.io/nvidia/tritonserver
 
 Before running this container, the Server container must be already running as the performance analyzer runs the inferences in the server. As performance evaluation does not require accuracy measurements, real input samples are not necessary. Thus, they are not necessary to run the `perf_analyzer` command. 
 
-Several commands can be used to run inferences on the Performance Analyze container. Please have a look at the NVIDIA Triton performance Analyzer manual.
+Several commands can be used to run inferences on the Performance Analyzer container. Please have a look at the NVIDIA Triton performance Analyzer manual.
 
 The script `performance_sweeping.sh`, using performance analyzer, executes several configurations and calculates the performance. 
 

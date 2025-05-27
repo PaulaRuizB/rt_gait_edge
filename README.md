@@ -19,7 +19,7 @@ The inference server runs inferences and must be running on the Jetson platform.
 docker run --runtime nvidia --rm --net=host -v /[*pathtomodelrepository]*/model_repository/:/models nvcr.io/nvidia/tritonserver:24.01-py3-igpu tritonserver --model-repository=/models
 ```
 
-_Comment: when the container starts, it executes the `/opt/nvidia_entrypoint.sh` file. This script performs several checks. Among them, it checks if the driver is installed by executing `nvidia-smi` command. As this command is not present in Jetson, the container shows the message  “Failed to detect NVIDIA driver version.”. This message can be dismissed as the driver is working._
+_Comment: when the container starts, it executes the `/opt/nvidia_entrypoint.sh` file. This script performs several checks. Among them, it checks if the driver is installed by executing `nvidia-smi` command. As this command is not present in Jetson, the container shows the message  “Failed to detect NVIDIA driver version”. This message can be dismissed as the driver is working._
 
 Models employed for inferences must be storage in the host directory `/[*pathtomodelrepository]*/model_repository/`
 

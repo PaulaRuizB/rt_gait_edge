@@ -21,17 +21,16 @@ docker run --runtime nvidia --rm --net=host -v /[*pathtomodelrepository]*/model\
 
 _Comment: when the container starts, it executes the `/opt/nvidia\_entrypoint.sh` file. This script performs several checks. Among them, it checks if the driver is installed by executing `nvidia-smi` command. As this command is not present in Jetson, the container shows the message  “Failed to detect NVIDIA driver version.”. This message can be dismissed as the driver is working._
 
-Models employed for inferences must be storage in the host directory /[*pathtomodelrepository]*/model\_repository/ 
+Models employed for inferences must be storage in the host directory `/[*pathtomodelrepository]*/model\_repository/`
 
 In the model\_repository directory, a specific hierarchy must be used for each model. Following, an example of the hierarchy for the 2Dbase model is shown:
 
-model\_repository
-
-2Dbase/
-
-`  `1/
-
-`     `model.plan
+```text
+model_repository/
+└── 2Dbase/
+    └── 1/
+        └── model.plan
+```
 
 In the file *model_repository.tgz* you have an example of model repository including two gait recognition models, 3D_best_0_batchd (3D convolutions, best quantization, no pruning and dynamic batch) and 2D_int8_40_batchd (2D convolutions, int8 quantization, 40% pruned and dynamic batch) in TensorRT (model.plan)
 

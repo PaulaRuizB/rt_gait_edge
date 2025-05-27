@@ -46,11 +46,11 @@ Before running this container, the Server container must be already running as t
 
 Several commands can be used to run inferences on the Performance Analyze container. Please have a look at the NVIDIA Triton performance Analyzer manual.
 
-The script *performance_sweeping.sh*, using performance analyzer, executes several configurations and calculates the performance. 
+The script `performance_sweeping.sh`, using performance analyzer, executes several configurations and calculates the performance. 
 
 ## Energy consumption
 
-The files *3DGait_client_ver2.py* and *energy_merter.py* allow running different configurations with concurrency and batching values, and calculating the energy consumption per inference. The script *energy_sweeping.sh* shows how to do it. 
+The files `3DGait_client_ver2.py` and `energy_merter.py` allow running different configurations with concurrency and batching values, and calculating the energy consumption per inference. The script *energy_sweeping.sh* shows how to do it. 
 
 ## Our papers: 
 

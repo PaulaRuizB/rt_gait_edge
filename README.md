@@ -23,7 +23,7 @@ _Comment: when the container starts, it executes the `/opt/nvidia\_entrypoint.sh
 
 Models employed for inferences must be storage in the host directory `/[*pathtomodelrepository]*/model_repository/`
 
-In the model\_repository directory, a specific hierarchy must be used for each model. Following, an example of the hierarchy for the 2Dbase model is shown:
+In the model_repository directory, a specific hierarchy must be used for each model. Following, an example of the hierarchy for the 2Dbase model is shown:
 
 ```text
 model_repository/

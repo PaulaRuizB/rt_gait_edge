@@ -19,7 +19,7 @@ It runs inferences. It must be running on the Jetson platform. The best way to r
 docker run --runtime nvidia --rm --net=host -v /[*pathtomodelrepository]*/model_repository/:/models nvcr.io/nvidia/tritonserver:24.01-py3-igpu tritonserver --model-repository=/models
 ```
 
-_Comment: when the container starts, it executes the `/opt/nvidia\_entrypoint.sh` file. This script performs several checks. Among them, it checks if the driver is installed by executing `nvidia-smi` command. As this command is not present in Jetson, the container shows the message  “Failed to detect NVIDIA driver version.”. This message can be dismissed as the driver is working._
+_Comment: when the container starts, it executes the `/opt/nvidia_entrypoint.sh` file. This script performs several checks. Among them, it checks if the driver is installed by executing `nvidia-smi` command. As this command is not present in Jetson, the container shows the message  “Failed to detect NVIDIA driver version.”. This message can be dismissed as the driver is working._
 
 Models employed for inferences must be storage in the host directory `/[*pathtomodelrepository]*/model_repository/`
 
@@ -32,7 +32,7 @@ model_repository/
         └── model.plan
 ```
 
-In the file *model_repository.tgz* you have an example of model repository including two gait recognition models, 3D_best_0_batchd (3D convolutions, best quantization, no pruning and dynamic batch) and 2D_int8_40_batchd (2D convolutions, int8 quantization, 40% pruned and dynamic batch) in TensorRT (`model.plan`)
+In the file `model_repository.tgz` you have an example of model repository including two gait recognition models, `3D_best_0_batchd` (3D convolutions, best quantization, no pruning and dynamic batch) and `2D_int8_40_batchd` (2D convolutions, int8 quantization, 40% pruned and dynamic batch) in TensorRT (`model.plan`)
 
 ## Performance analyzer
 
@@ -42,7 +42,7 @@ It automatically executes several inferences and extracts performance metrics. P
 sudo docker run --runtime nvidia -it --rm --net=host nvcr.io/nvidia/tritonserver:24.01-py3-igpu-sdk
 ```
 
-Before running this container, the Server container must be already running as the performance analyzer runs the inferences in the server. As performance does not calculate accuracy, no real input samples are required. Thus, they are not necessary to run the `perf\_analyzer` command. 
+Before running this container, the Server container must be already running as the performance analyzer runs the inferences in the server. As performance does not calculate accuracy, no real input samples are required. Thus, they are not necessary to run the `perf_analyzer` command. 
 
 Several commands can be used to run inferences on the Performance Analyze container. Please have a look at the NVIDIA Triton performance Analyzer manual.
 
@@ -50,7 +50,7 @@ The script `performance_sweeping.sh`, using performance analyzer, executes sever
 
 ## Energy consumption
 
-The files `3DGait_client_ver2.py` and `energy_merter.py` allow running different configurations with concurrency and batching values, and calculating the energy consumption per inference. The script *energy_sweeping.sh* shows how to do it. 
+The files `3DGait_client_ver2.py` and `energy_merter.py` allow running different configurations with concurrency and batching values, and calculating the energy consumption per inference. The script `energy_sweeping.sh` shows how to do it. 
 
 ## Our papers: 
 

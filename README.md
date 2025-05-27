@@ -13,7 +13,7 @@ git clone https://github.com/PaulaRuizB/Embedded-Gait
 The inference is performed using NVIDIA Triton as inference server. Similarly, we use NVIDIA Performance Analyzer as inference client to measure inference performance. Both applications are executed using Docker containers. In addition, we have developed a inference client that calculates energy consumption per inference. Following, more details are given.
 
 ## Inference Server
-It runs inferences. It must be running on the Jetson platform. The best way to run the server is using docker images. In our experiments, we have employed the image named `nvcr.io/nvidia/tritonserver:24.01-py3-igpu` that can be downloaded from <https://catalog.ngc.nvidia.com/orgs/nvidia/containers/tritonserver/tags>. The comamnd to run the docker container is:
+It inference server runs inferences and must be running on the Jetson platform. The best way to run the server is using docker images. In our experiments, we have employed the image named `nvcr.io/nvidia/tritonserver:24.01-py3-igpu` that can be downloaded from <https://catalog.ngc.nvidia.com/orgs/nvidia/containers/tritonserver/tags>. The comamnd to run the docker container is:
 
 ```
 docker run --runtime nvidia --rm --net=host -v /[*pathtomodelrepository]*/model_repository/:/models nvcr.io/nvidia/tritonserver:24.01-py3-igpu tritonserver --model-repository=/models

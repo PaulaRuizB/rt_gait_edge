@@ -36,7 +36,7 @@ In the file `model_repository.tgz` you have an example of model repository inclu
 
 ## Performance analyzer
 
-It automatically executes several inferences and extracts performance metrics. Performance analyzer is in another docker image with the `sdk` tag. We have used `nvcr.io/nvidia/tritonserver:24.01-py3-igpu-sdk`. In order to run the container, the following command is executed in the Jetson platform:
+It automatically executes several inferences and extracts performance metrics. Performance analyzer is in another docker image with the `sdk` tag. We have used `nvcr.io/nvidia/tritonserver:24.01-py3-igpu-sdk`. In order to run the container on the Jetson platform, execute:
 
 ```
 sudo docker run --runtime nvidia -it --rm --net=host nvcr.io/nvidia/tritonserver:24.01-py3-igpu-sdk

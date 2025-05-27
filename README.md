@@ -13,13 +13,13 @@ git clone https://github.com/PaulaRuizB/Embedded-Gait
 The inference is performed using NVIDIA Triton as inference server. Similarly, we use NVIDIA Performace Analyzer as inference client to measure inference performance. Both applications are executed using Docker containers. In addition, we have developed a inference client that calculates energy consumption per inference. Following, more details are given.
 
 ## Inference Server
-It runs inferences. It must be running on the Jetson platform. The best way to run the server is using docker images. In our experiments,  we have employed the image named `nvcr.io/nvidia/tritonserver:24.01-py3-igpu` that can be downloaded from <https://catalog.ngc.nvidia.com/orgs/nvidia/containers/tritonserver/tags>. The comamnd to run the docker container is:
+It runs inferences. It must be running on the Jetson platform. The best way to run the server is using docker images. In our experiments, we have employed the image named `nvcr.io/nvidia/tritonserver:24.01-py3-igpu` that can be downloaded from <https://catalog.ngc.nvidia.com/orgs/nvidia/containers/tritonserver/tags>. The comamnd to run the docker container is:
 
 ```
 docker run --runtime nvidia --rm --net=host -v /[*pathtomodelrepository]*/model\_repository/:/models nvcr.io/nvidia/tritonserver:24.01-py3-igpu tritonserver --model-repository=/models
 ```
 
-_Comment: when the container starts, it executes the /opt/nvidia\_entrypoint.sh file. This batch file performs several checks. Among them, it checks if the driver is installed by executing nvidia-smi command. As this command is not present in Jetson, the container shows the message  “ Failed to detect NVIDIA driver version.”. This message can be dismissed as the driver is working._
+_Comment: when the container starts, it executes the `/opt/nvidia\_entrypoint.sh` file. This script performs several checks. Among them, it checks if the driver is installed by executing `nvidia-smi` command. As this command is not present in Jetson, the container shows the message  “Failed to detect NVIDIA driver version.”. This message can be dismissed as the driver is working._
 
 Models employed for inferences must be storage in the host directory /[*pathtomodelrepository]*/model\_repository/ 
 

@@ -2,7 +2,7 @@
 
 Real-time multiple people gait recognition in the edge
 
-## Prerequisites
+# Prerequisites
 This project is based on the previous work: [High performance inference of gait recognition models on embedded systems](https://www.sciencedirect.com/science/article/pii/S2210537922001457). Therefore, you must first clone the original repository:
 ```
 git clone https://github.com/PaulaRuizB/Embedded-Gait

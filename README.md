@@ -70,4 +70,16 @@ If you find this code useful in your research, please consider citing:
         }
 
   
-* The paper describing this project has been accepted and will be available soon.
+* Our paper: [Real-time multiple people gait recognition in the edge](https://www.nature.com/articles/s41598-025-02351-x).
+
+          @article{ruiz2025real,
+          title={Real-time multiple people gait recognition in the edge},
+          author={Ruiz-Barroso, Paula and Gonz{\'a}lez-Linares, Jos{\'e} Mar{\'\i}a and Castro, Francisco M and Guil, Nicol{\'a}s},
+          journal={Scientific Reports},
+          volume={15},
+          number={1},
+          pages={19276},
+          year={2025},
+          publisher={Nature Publishing Group UK London}
+          }
+  

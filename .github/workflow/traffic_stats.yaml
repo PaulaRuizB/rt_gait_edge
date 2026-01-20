@@ -1,0 +1,20 @@
+name: GitHub Traffic Stats
+
+on:
+  schedule:
+    - cron: '0 0 * * *' # Se ejecuta cada medianoche
+  workflow_dispatch:   # Permite ejecutarlo manualmente para probar
+
+jobs:
+  update-stats:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout del código
+        uses: actions/checkout@v3
+
+      - name: Actualizar Estadísticas de Tráfico
+        uses: teoxoy/profile-repository-stats@v1
+        with:
+          token: ${{ secrets.TRAFFIC_TOKEN }}
+          # Esto creará una rama llamada 'traffic' para guardar los datos
+          branch: traffic

@@ -83,3 +83,15 @@ If you find this code useful in your research, please consider citing:
           publisher={Nature Publishing Group UK London}
           }
   
+## 📈Traffic stats:
+
+This section displays the accumulated historical data for views and clones, updated daily to bypass GitHub's 14-day retention limit:
+
+Metric | Status |
+| :--- | :--- |
+| **Total Views** | ![Views](https://img.shields.io/badge/dynamic/json?color=blue&label=views&query=count&url=https%3A%2F%2Fraw.githubusercontent.com%2Fjgluma%2Frt_gait_edge%2Fmain%2Fstats%2Fviews.json) |
+| **Unique Visitors** | ![Unique Views](https://img.shields.io/badge/dynamic/json?color=brightgreen&label=unique%20visitors&query=uniques&url=https%3A%2F%2Fraw.githubusercontent.com%2Fjgluma%2Frt_gait_edge%2Fmain%2Fstats%2Fviews.json) |
+| **Total Clones** | ![Clones](https://img.shields.io/badge/dynamic/json?color=orange&label=clones&query=count&url=https%3A%2F%2Fraw.githubusercontent.com%2Fjgluma%2Frt_gait_edge%2Fmain%2Fstats%2Fclones.json) |
+| **Unique Cloners** | ![Unique Clones](https://img.shields.io/badge/dynamic/json?color=yellow&label=unique%20cloners&query=uniques&url=https%3A%2F%2Fraw.githubusercontent.com%2Fjgluma%2Frt_gait_edge%2Fmain%2Fstats%2Fclones.json) |
+
+> *Data automatically updated every 24 hours via GitHub Actions. Historical logs stored in `/stats`.*
